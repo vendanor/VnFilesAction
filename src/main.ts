@@ -18,13 +18,15 @@ async function run(): Promise<void> {
     const md5 = new Md5()
     md5.appendStr(salt)
     md5.appendStr(inputFilename)
-    const md5val = md5.end()
+    const md5val = md5.end(false)
 
-    let targetFilename = ''
+    core.info(`md5val ${md5val}`)
+
+    let targetFilename: string
 
     if (append) {
       const parts = inputFilename.split('.')
-      if (parts.length > 0) {
+      if (parts.length === 2) {
         targetFilename = `${targetFolder}${parts[0]}_${md5val}.${parts[1]}`
       } else {
         targetFilename = `${targetFolder}${inputFilename}_${md5val}`
@@ -33,9 +35,7 @@ async function run(): Promise<void> {
       targetFilename = `${targetFolder}${inputFilename}`
     }
 
-    const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file v${inputFilename} --name ${{
-      targetFilename
-    }}`
+    const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file ${inputFilename} --name ${targetFilename}`
 
     core.info(`Target filename: ${targetFilename}`)
     core.info(`AZ cmd: ${cmd}`)
