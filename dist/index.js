@@ -1548,11 +1548,12 @@ function run() {
             const md5 = new md5_1.Md5();
             md5.appendStr(salt);
             md5.appendStr(inputFilename);
-            const md5val = md5.end();
-            let targetFilename = '';
+            const md5val = md5.end(false);
+            core.info(`md5val ${md5val}`);
+            let targetFilename;
             if (append) {
                 const parts = inputFilename.split('.');
-                if (parts.length > 0) {
+                if (parts.length === 2) {
                     targetFilename = `${targetFolder}${parts[0]}_${md5val}.${parts[1]}`;
                 }
                 else {
@@ -1562,9 +1563,7 @@ function run() {
             else {
                 targetFilename = `${targetFolder}${inputFilename}`;
             }
-            const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file v${inputFilename} --name ${{
-                targetFilename
-            }}`;
+            const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file ${inputFilename} --name ${targetFilename}`;
             core.info(`Target filename: ${targetFilename}`);
             core.info(`AZ cmd: ${cmd}`);
             yield az_login_1.loginAzure(token);
