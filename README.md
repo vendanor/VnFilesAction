@@ -1,6 +1,6 @@
 # VnFilesAction
 
-Action to upload files
+Action to upload files (Vendanor internal action)
 
 ## Code in Main
 
@@ -27,24 +27,17 @@ $ npm test
 ```
 
 
-## Change the Code
+## Usage
 
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-import * as core from '@actions/core';
-...
-
-async function run() {
-  try { 
-      ...
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
+```yaml
+- name: Upload some file
+  id: mystep
+  uses: vendanor/VnFilesAction
+  with:
+    azureToken: ${{ secrets.AZURE_TOKEN }}
+    salt: ${{ secrets.SALT }}
+    input: myfile.json
+    folder: 'subfolder/'
 ```
 
 See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
@@ -66,19 +59,3 @@ Note: We recommend using the `--license` option for ncc, which will create a lic
 Your action is now published! :rocket: 
 
 See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Validate
-
-You can now validate the action by referencing `./` in a workflow in your repo (see [test.yml](.github/workflows/test.yml))
-
-```yaml
-uses: ./
-with:
-  milliseconds: 1000
-```
-
-See the [actions tab](https://github.com/actions/typescript-action/actions) for runs of this action! :rocket:
-
-## Usage:
-
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action

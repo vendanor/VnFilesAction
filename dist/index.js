@@ -1544,19 +1544,23 @@ function run() {
             const inputFilename = core.getInput('input', { required: true });
             const append = core.getInput('append-md5-hash');
             const accountName = core.getInput('azure-account-name', { required: true });
+            const targetFolder = core.getInput('folder');
             const md5 = new md5_1.Md5();
             md5.appendStr(salt);
             md5.appendStr(inputFilename);
             const md5val = md5.end();
-            let targetFilename = inputFilename;
+            let targetFilename = '';
             if (append) {
                 const parts = inputFilename.split('.');
                 if (parts.length > 0) {
-                    targetFilename = `${parts[0]}_${md5val}.${parts[1]}`;
+                    targetFilename = `${targetFolder}${parts[0]}_${md5val}.${parts[1]}`;
                 }
                 else {
-                    targetFilename = `${inputFilename}_${md5val}`;
+                    targetFilename = `${targetFolder}${inputFilename}_${md5val}`;
                 }
+            }
+            else {
+                targetFilename = `${targetFolder}${inputFilename}`;
             }
             const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file v${inputFilename} --name ${{
                 targetFilename
@@ -1567,6 +1571,7 @@ function run() {
             yield az_run_command_1.executeAzCliCommand(cmd);
             yield az_logout_1.logoutAzure();
             core.setOutput('filename', targetFilename);
+            core.setOutput('url', `https://files.vendanor.com/${targetFilename}`);
             core.info('🍿🍿🍿 GREAT SUCCESS - very nice 🍿🍿🍿');
         }
         catch (error) {

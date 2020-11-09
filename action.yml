@@ -20,10 +20,15 @@ inputs:
     required: false
     description: 'Apply md5 hash at to target filename'
     default: true
+  folder:
+    required: false
+    description: 'Subfolder in azure. Example "images/". No leading slash, but include trailing slash.'
 
 outputs:
   filename:
     description: 'Uploaded filename'
+  url:
+    description: 'Url where file is available'
 
 runs:
   using: 'node12'
