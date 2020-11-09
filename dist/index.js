@@ -1563,7 +1563,7 @@ function run() {
             else {
                 targetFilename = `${targetFolder}${inputFilename}`;
             }
-            const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file ${inputFilename} --name ${targetFilename}`;
+            const cmd = `storage blob upload --account-name ${accountName} --container-name $web --file ${inputFilename} --name ${targetFilename}`;
             core.info(`Target filename: ${targetFilename}`);
             core.info(`AZ cmd: ${cmd}`);
             yield az_login_1.loginAzure(token);

@@ -35,7 +35,7 @@ async function run(): Promise<void> {
       targetFilename = `${targetFolder}${inputFilename}`
     }
 
-    const cmd = `storage blob upload --account-name ${accountName} --container-name '$web' --file ${inputFilename} --name ${targetFilename}`
+    const cmd = `storage blob upload --account-name ${accountName} --container-name $web --file ${inputFilename} --name ${targetFilename}`
 
     core.info(`Target filename: ${targetFilename}`)
     core.info(`AZ cmd: ${cmd}`)
