@@ -1,8 +1,8 @@
 import * as core from '@actions/core'
 import {Md5} from 'ts-md5/dist/md5'
-import {loginAzure} from 'src/az-login'
-import {logoutAzure} from 'src/az-logout'
-import {executeAzCliCommand} from 'src/az-run-command'
+import {loginAzure} from './az-login'
+import {executeAzCliCommand} from './az-run-command'
+import {logoutAzure} from './az-logout'
 
 async function run(): Promise<void> {
   try {
