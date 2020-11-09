@@ -1,6 +1,19 @@
 # VnFilesAction
 
-Action to upload files (Vendanor internal action)
+Action to upload files (for internal use by Vendanor)
+
+## Usage
+
+```yaml
+- name: Upload some file
+  id: mystep
+  uses: vendanor/VnFilesAction
+  with:
+    azureToken: ${{ secrets.AZURE_TOKEN }}
+    salt: ${{ secrets.SALT }}
+    input: myfile.json
+    folder: 'subfolder/'
+```
 
 ## Code in Main
 
@@ -26,21 +39,6 @@ $ npm test
 ...
 ```
 
-
-## Usage
-
-```yaml
-- name: Upload some file
-  id: mystep
-  uses: vendanor/VnFilesAction
-  with:
-    azureToken: ${{ secrets.AZURE_TOKEN }}
-    salt: ${{ secrets.SALT }}
-    input: myfile.json
-    folder: 'subfolder/'
-```
-
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
 
 ## Publish to a distribution branch
 
