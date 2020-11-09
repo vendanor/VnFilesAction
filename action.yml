@@ -1,11 +1,30 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'VnFilesAction'
+description: 'Upload files to Azure'
+author: 'Vendanor'
+
 inputs:
-  milliseconds: # change this
+  azure-token:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'Your azure token'
+  azure-account-name:
+    required: false
+    description: 'Azure account name'
+    default: 'vnproductionstoragev2'
+  salt:
+    required: true
+    description: 'Add some salt'
+  input:
+    required: true
+    description: 'Source filename you want to upload'
+  append-md5-hash:
+    required: false
+    description: 'Apply md5 hash at to target filename'
+    default: true
+
+outputs:
+  filename:
+    description: 'Uploaded filename'
+
 runs:
   using: 'node12'
   main: 'dist/index.js'
