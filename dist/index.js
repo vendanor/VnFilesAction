@@ -1549,7 +1549,6 @@ function run() {
             md5.appendStr(salt);
             md5.appendStr(inputFilename);
             const md5val = md5.end(false);
-            core.info(`md5val ${md5val}`);
             let targetFilename;
             if (append) {
                 const parts = inputFilename.split('.');
@@ -1569,8 +1568,10 @@ function run() {
             yield az_login_1.loginAzure(token);
             yield az_run_command_1.executeAzCliCommand(cmd);
             yield az_logout_1.logoutAzure();
+            const url = `https://files.vendanor.com/${targetFilename}`;
             core.setOutput('filename', targetFilename);
-            core.setOutput('url', `https://files.vendanor.com/${targetFilename}`);
+            core.setOutput('url', url);
+            core.info(`🔥 Url: ${url}`);
             core.info('🍿🍿🍿 GREAT SUCCESS - very nice 🍿🍿🍿');
         }
         catch (error) {

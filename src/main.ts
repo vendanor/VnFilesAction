@@ -19,9 +19,6 @@ async function run(): Promise<void> {
     md5.appendStr(salt)
     md5.appendStr(inputFilename)
     const md5val = md5.end(false)
-
-    core.info(`md5val ${md5val}`)
-
     let targetFilename: string
 
     if (append) {
@@ -44,8 +41,10 @@ async function run(): Promise<void> {
     await executeAzCliCommand(cmd)
     await logoutAzure()
 
+    const url = `https://files.vendanor.com/${targetFilename}`;
     core.setOutput('filename', targetFilename)
-    core.setOutput('url', `https://files.vendanor.com/${targetFilename}`)
+    core.setOutput('url', url)
+    core.info(`🔥 Url: ${url}`)
 
     core.info('🍿🍿🍿 GREAT SUCCESS - very nice 🍿🍿🍿')
   } catch (error) {
