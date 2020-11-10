@@ -41,10 +41,7 @@ async function run(): Promise<void> {
     await executeAzCliCommand(cmd)
     await logoutAzure()
 
-    const url = `https://files.vendanor.com/${targetFilename}`;
     core.setOutput('filename', targetFilename)
-    core.setOutput('url', url)
-    core.info(`🔥 Url: ${url}`)
 
     core.info('🍿🍿🍿 GREAT SUCCESS - very nice 🍿🍿🍿')
   } catch (error) {

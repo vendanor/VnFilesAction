@@ -27,8 +27,6 @@ inputs:
 outputs:
   filename:
     description: 'Uploaded filename'
-  url:
-    description: 'Url where file is available'
 
 runs:
   using: 'node12'

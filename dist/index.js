@@ -1568,10 +1568,7 @@ function run() {
             yield az_login_1.loginAzure(token);
             yield az_run_command_1.executeAzCliCommand(cmd);
             yield az_logout_1.logoutAzure();
-            const url = `https://files.vendanor.com/${targetFilename}`;
             core.setOutput('filename', targetFilename);
-            core.setOutput('url', url);
-            core.info(`🔥 Url: ${url}`);
             core.info('🍿🍿🍿 GREAT SUCCESS - very nice 🍿🍿🍿');
         }
         catch (error) {
