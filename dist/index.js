@@ -12027,9 +12027,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logoutAzure = void 0;
 const az_run_command_1 = __webpack_require__(601);
-exports.logoutAzure = () => __awaiter(void 0, void 0, void 0, function* () {
+const logoutAzure = () => __awaiter(void 0, void 0, void 0, function* () {
     yield az_run_command_1.executeAzCliCommand('logout');
 });
+exports.logoutAzure = logoutAzure;
 
 
 /***/ }),
