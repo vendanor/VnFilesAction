@@ -9,3 +9,10 @@ updates:
       interval: 'weekly'
       day: 'monday'
       time: '08:00'
+    default_reviewers:
+      - "thomastvedt"
+    default_assignees:
+      - "thomastvedt"
+    allowed_updates:
+      - match:
+        update_type: "security"
