@@ -1,4 +1,4 @@
-# VnFilesAction
+# files-action
 
 Action to upload files (for internal use by Vendanor)
 
