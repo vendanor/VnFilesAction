@@ -1,6 +1,9 @@
-name: 'VnFilesAction'
+name: 'files-action'
 description: 'Upload files to Azure'
 author: 'Vendanor'
+branding:
+  icon: file-text
+  color: yellow
 
 inputs:
   azure-token:
